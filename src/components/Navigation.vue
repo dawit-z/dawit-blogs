@@ -7,7 +7,7 @@
         >
       </div>
       <div class="nav-links">
-        <ul>
+        <ul v-show="!mobile">
           <router-link class="link" to="#">Home</router-link>
           <router-link class="link" to="#">Blogs</router-link>
           <router-link class="link" to="#">Create post</router-link>
@@ -15,9 +15,9 @@
         </ul>
       </div>
     </nav>
-    <menuIcon />
+    <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
     <transition name="mobile-nav">
-      <ul>
+      <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" to="#">Home</router-link>
         <router-link class="link" to="#">Blogs</router-link>
         <router-link class="link" to="#">Create post</router-link>
@@ -34,6 +34,32 @@ export default {
   name: "Navigation",
   components: {
     menuIcon,
+  },
+  data() {
+    return {
+      mobile: null,
+      mobileNav: null,
+      windowWidth: null,
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen;
+  },
+  methods: {
+    checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth <= 750) {
+        this.mobile = true;
+        return;
+      }
+      this.mobile = false;
+      this.mobileNav = false;
+      return;
+    },
+    toggleMobileNav() {
+      this.mobileNav = !this.mobileNav;
+    },
   },
 };
 </script>
@@ -70,6 +96,48 @@ header {
         text-decoration: none;
       }
     }
+
+    .nav-link {
+      position: relative;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: flex-end;
+
+      ul {
+        margin-right: 32px;
+
+        .link {
+          margin-right: 32px;
+        }
+
+        .link:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .menu-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 32px;
+    right: 25px;
+    height: 25px;
+    width: auto;
+  }
+
+  .mobile-nav {
+    padding: 20px;
+    width: 70%;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    background-color: #303030;
+    top: 0;
+    left: 0;
   }
 }
 </style>
