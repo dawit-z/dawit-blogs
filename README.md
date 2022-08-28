@@ -1,4 +1,4 @@
-# fireblogs
+# dawit-blogs
 
 ## Project setup
 ```
