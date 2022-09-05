@@ -97,7 +97,7 @@ header {
       }
     }
 
-    .nav-link {
+    .nav-links {
       position: relative;
       display: flex;
       flex: 1;
@@ -138,6 +138,11 @@ header {
     background-color: #303030;
     top: 0;
     left: 0;
+
+    .link {
+      padding: 15px 0;
+      color: #fff;
+    }
   }
 }
 </style>
