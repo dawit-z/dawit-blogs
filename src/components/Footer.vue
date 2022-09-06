@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="right">
-        <p>Copyright 2021 All Rights Reserved</p>
+        <p>Copyright 2022 All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -96,6 +96,10 @@ footer {
         color: #fff;
         text-decoration: none;
         font-weight: 600;
+        text-align: center;
+        @media (min-width: 800px) {
+          text-align: initial;
+        }
       }
       ul {
         gap: 16px;
